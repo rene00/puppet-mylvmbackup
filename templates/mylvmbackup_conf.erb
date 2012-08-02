@@ -1,0 +1,58 @@
+[mysql]
+user=<%= mysql_database_user %>
+password=<%= mysql_database_password %>
+host=localhost
+port=3306
+socket=
+mycnf=/etc/mysql/my.cnf
+
+[lvm]
+vgname=<%= vgname %>
+lvname=<%= lvname %>
+backuplv=
+lvsize=<%= lvsize %>
+
+[fs]
+xfs=<%= xfs %>
+mountdir=/var/cache/mylvmbackup/mnt/
+backupdir=/var/cache/mylvmbackup/backup/
+relpath=<%= relpath %>
+
+[tools]
+lvcreate=lvcreate
+lvremove=lvremove
+lvs=lvs
+mount=mount
+tar=tar
+compress=gzip
+rsync=rsync
+rsnap=rsnap
+umount=umount
+
+[misc]
+backuptype=tar
+prefix=backup
+suffix=_mysql
+tararg=cvf
+tarsuffixarg=<%= tarsuffixarg %>
+tarfilesuffix=.tar.gz
+compressarg=--stdout --verbose --best
+rsyncarg=-avWP
+rsnaparg=7
+datefmt=%Y%m%d_%H%M%S
+innodb_recover=0
+pidfile=/var/tmp/mylvmbackup_recoverserver.pid
+skip_flush_tables=0
+extra_flush_tables=0
+skip_mycnf=0
+hooksdir=/usr/share/mylvmbackup
+skip_hooks=0
+keep_snapshot=0
+keep_mount=0
+quiet=0
+
+[logging]
+log_method=<%= log_method %>
+syslog_socktype=native
+syslog_facility=
+syslog_remotehost=
